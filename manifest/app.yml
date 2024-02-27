@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mediapp-deployment
+spec:
+  replicas: 2   #creates 2 replicas of the application in the 2 worker nodes
+  selector:
+    matchLabels:
+      type: front-end
+      app: mediapp
+  template:
+    metadata:
+      labels:
+        type: front-end
+        app: mediapp
+    spec:
+      containers:
+        - name: mediapp
+          image: zenitugo/medicalsite
+          ports:
+            - containerPort: 80
+      
+
